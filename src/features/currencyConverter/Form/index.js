@@ -6,44 +6,55 @@ import { Button, Content, StyledForm, StyledInput, Title } from "./styled";
 import { addTransaction } from "./transactionSlice";
 
 export const Form = () => {
-  const [newTransactionRate, setNewTransactionRate] = useState("4");
-  const [newTransactionName, setNewTransactionName] = useState("");
-  const [newTransactionAmount, setNewTransactionAmount] = useState("");
-  const [newTransactionResult, setNewTransactionResult] = useState("");
+  const [rate, setRate] = useState("");
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
-  const calculateResult = (newTransactionAmount, newTransactionRate) => {
-    let newValue = newTransactionAmount / newTransactionRate;
-    setNewTransactionResult(newValue)
-  }
+  const calculateResult = (amount, rate) => {
+    setResult(amount / rate);
+  };
+
+  const onRateChange = ({ target }) => {
+    setRate(target.value);
+  };
+
+  const onAmountChange = ({ target }) => {
+    setAmount(target.value);
+  };
+
+  const onNameChange = ({ target }) => {
+    setName(target.value);
+  };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
 
     dispatch(addTransaction({
-      rate: newTransactionRate,
-      name: newTransactionName,
-      amount: newTransactionAmount,
-      result: newTransactionResult,
+      rate: rate,
+      name: name,
+      amount: amount,
+      result: result,
       id: nanoid(),
     }));
 
-    setNewTransactionName("");
-    setNewTransactionAmount("");
-    setNewTransactionResult("");
+    setName("");
+    setAmount("");
+    setResult("");
   };
 
+  useEffect(() => {
+    calculateResult(amount, rate)
+  }, [amount, rate])
   return (
     <>
       <Title>Currency converter € to PLN</Title>
       <StyledForm onSubmit={onFormSubmit}>
         <Content>Custom exchange rate</Content>
         <StyledInput
-          value={newTransactionRate}
-          onChange={({ target }) => {
-            setNewTransactionRate(target.value)
-            calculateResult(newTransactionAmount, newTransactionRate)
-          }}
+          value={rate}
+          onChange={onRateChange}
           placeholder="Enter your custom exchange rate"
           type="number"
           step="0.01"
@@ -51,19 +62,16 @@ export const Form = () => {
         />
         <Content>Transaction name</Content>
         <StyledInput
-          value={newTransactionName}
-          onChange={({ target }) => setNewTransactionName(target.value)}
+          value={name}
+          onChange={onNameChange}
           placeholder="Enter the transaction name"
           type="text"
           required
         />
         <Content>Amount in €</Content>
         <StyledInput
-          value={newTransactionAmount}
-          onChange={({ target }) => {
-            setNewTransactionAmount(target.value)
-            calculateResult(newTransactionAmount, newTransactionRate)
-          }}
+          value={amount}
+          onChange={onAmountChange}
           placeholder="Enter the amount in €"
           type="number"
           required
@@ -71,7 +79,7 @@ export const Form = () => {
           min="0" />
         <Button>Add transaction</Button>
       </StyledForm>
-      <Result>{newTransactionAmount} € = {newTransactionResult} PLN</Result>
+      <Result>{amount} € = {result} PLN</Result>
     </>
   )
 }

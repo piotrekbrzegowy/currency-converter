@@ -6,7 +6,7 @@ import { Button, Content, StyledForm, StyledInput, Title } from "./styled";
 import { addTransaction } from "./transactionSlice";
 
 export const Form = () => {
-  const [rate, setRate] = useState("");
+  const [rate, setRate] = useState("4");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [result, setResult] = useState("");
@@ -47,6 +47,7 @@ export const Form = () => {
   useEffect(() => {
     calculateResult(amount, rate)
   }, [amount, rate])
+
   return (
     <>
       <Title>Currency converter € to PLN</Title>

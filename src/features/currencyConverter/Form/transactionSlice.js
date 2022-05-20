@@ -15,7 +15,8 @@ const transactionSlice = createSlice({
         },
         updateTransaction: ({transactions}, { payload: rate }) => {
             transactions.forEach((transaction) => {
-                transaction.result = rate * transaction.amount
+                const result =  rate * transaction.amount;
+                transaction.result = result.toFixed(2);
             })
         },
         resetState: (state) => {

@@ -13,7 +13,8 @@ export const Form = () => {
   const dispatch = useDispatch();
 
   const calculateResult = (amount, rate) => {
-    setResult(amount * rate);
+    const result = amount * rate;
+    setResult(result.toFixed(2));
   };
 
   const onRateChange = ({ target }) => {

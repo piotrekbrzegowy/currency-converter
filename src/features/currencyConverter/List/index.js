@@ -1,4 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTransaction, selectTransactions } from "../Form/transactionSlice";
 import { Item, List, Button, Heading, Content } from "./styled";
@@ -11,8 +10,8 @@ export const TransactionsList = () => {
         <List>
             <Item>
                 <Heading>Name</Heading>
-                <Heading>Amount(€)</Heading>
-                <Heading>Result(PLN)</Heading>
+                <Heading>Amount (€)</Heading>
+                <Heading>Result (PLN)</Heading>
                 <Heading>Delete</Heading>
             </Item>
             {transactions.map(transaction => (

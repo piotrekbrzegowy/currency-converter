@@ -1,22 +1,31 @@
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../Form/transactionSlice";
-import { Item, List } from "./styled";
+import { nanoid } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { removeTransaction, selectTransactions } from "../Form/transactionSlice";
+import { Item, List, Button, Heading, Content } from "./styled";
 
 export const TransactionsList = () => {
     const transactions = useSelector(selectTransactions);
+    const dispatch = useDispatch();
 
     return (
         <List>
-            <Item>Name</Item>
-            <Item>Amount(€)</Item>
-            <Item>Result(PLN)</Item>
-            {transactions.transactions.map(({ name, amount, result }) => (
+            <Item>
+                <Heading>Name</Heading>
+                <Heading>Amount(€)</Heading>
+                <Heading>Result(PLN)</Heading>
+                <Heading>Delete</Heading>
+            </Item>
+            {transactions.map(transaction => (
                 <>
-                    <Item>{name}</Item>
-                    <Item>{amount}</Item>
-                    <Item>{result}</Item>
+                    <Item key={transaction.transactionId}>
+                        <Content>{transaction.name}</Content>
+                        <Content>{transaction.amount}</Content>
+                        <Content>{transaction.result}</Content>
+                        <Button onClick={() => dispatch(removeTransaction(transaction.transactionId))}>DEL</Button>
+                    </Item>
                 </>
             ))}
         </List>
+
     )
 };

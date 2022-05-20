@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Result } from "./Result";
 import { Button, Content, StyledForm, StyledInput, Title } from "./styled";
-import { addTransaction } from "./transactionSlice";
+import { addTransaction, updateTransaction } from "./transactionSlice";
 
 export const Form = () => {
   const [rate, setRate] = useState("4");
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState("40");
   const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
@@ -18,6 +18,7 @@ export const Form = () => {
 
   const onRateChange = ({ target }) => {
     setRate(target.value);
+    dispatch(updateTransaction(target.value))
   };
 
   const onAmountChange = ({ target }) => {
@@ -36,7 +37,7 @@ export const Form = () => {
       name: name,
       amount: amount,
       result: result,
-      id: nanoid(),
+      transactionId: nanoid(),
     }));
 
     setName("");

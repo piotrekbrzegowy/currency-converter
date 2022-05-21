@@ -1,20 +1,20 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Result } from "./Result";
 import { Button, Content, StyledForm, StyledInput, Title } from "./styled";
-import { addTransaction, updateTransaction } from "./transactionSlice";
+import { addTransaction, selectTransactions, updateTransaction } from "./transactionSlice";
 
 export const Form = () => {
-  const [rate, setRate] = useState("4");
+  const [rate, setRate] = useState(4);
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState("40");
+  const [amount, setAmount] = useState(40);
   const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
   const calculateResult = (amount, rate) => {
     const result = amount * rate;
-    setResult(result.toFixed(2));
+    setResult(+result.toFixed(2));
   };
 
   const onRateChange = ({ target }) => {
@@ -34,10 +34,10 @@ export const Form = () => {
     event.preventDefault();
 
     dispatch(addTransaction({
-      rate: rate,
+      rate: +rate,
       name: name,
-      amount: amount,
-      result: result,
+      amount: +amount,
+      result: +result,
       transactionId: nanoid(),
     }));
 

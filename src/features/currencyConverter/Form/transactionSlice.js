@@ -13,11 +13,11 @@ const transactionSlice = createSlice({
             const index = transactions.findIndex(({ transactionId }) => transactionId === id);
             transactions.splice(index, 1);
         },
-        updateTransaction: ({transactions}, { payload: rate }) => {
+        updateTransaction: ({ transactions }, { payload: rate }) => {
             transactions.forEach((transaction) => {
-                const result =  rate * transaction.amount;
-                transaction.result = result.toFixed(2);
-            })
+                const result = rate * transaction.amount;
+                transaction.result = +result.toFixed(2);
+            });
         },
         resetState: (state) => {
             state.transactions = [];

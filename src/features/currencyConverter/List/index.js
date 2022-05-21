@@ -8,6 +8,7 @@ export const TransactionsList = () => {
     const dispatch = useDispatch();
     const [sumResult, setSumResult] = useState("");
     const [sumAmount, setSumAmount] = useState("");
+    const [maxValue, setMaxValue] = useState("");
 
     const calculateSum = () => {
         let resultSum = 0;
@@ -26,9 +27,19 @@ export const TransactionsList = () => {
         }
     }
 
+    const getMaxValueObject = () => {
+        if (sumResult != 0 || sumResult != "") {
+            const maxValueObject = transactions.reduce((prev, current) => (prev.result > current.result) ? prev : current, 0)
+            setMaxValue(maxValueObject);
+        } else {
+            setMaxValue("");
+        };
+    }
+
     useEffect(() => {
         calculateSum();
-    }, [calculateSum])
+        getMaxValueObject();
+    }, [calculateSum, getMaxValueObject])
 
     return (
         <List>
@@ -56,6 +67,18 @@ export const TransactionsList = () => {
                 <Heading>{sumAmount}</Heading>
                 <Heading>{sumResult}</Heading>
                 <Heading></Heading>
+            </Item>
+            <Item>
+                <Heading>BIGGEST TRANSACTION:</Heading>
+                <Heading></Heading>
+                <Heading></Heading>
+                <Heading></Heading>
+            </Item>
+            <Item>
+                <Content>{maxValue.name}</Content>
+                <Content>{maxValue.amount}</Content>
+                <Content>{maxValue.result}</Content>
+                <Content></Content>
             </Item>
         </List>
 

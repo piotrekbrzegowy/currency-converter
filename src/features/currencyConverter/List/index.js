@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTransaction, selectTransactions } from "../Form/transactionSlice";
-import { Item, List, Button, Heading, Content } from "./styled";
+import { Item, List, Button, Heading, Content, Wrapper } from "./styled";
 
 export const TransactionsList = () => {
     const transactions = useSelector(selectTransactions);
@@ -20,11 +20,11 @@ export const TransactionsList = () => {
         });
         if (transactions.rate === "NaN" || transactions.rate === "") {
             setSumResult(0);
-            setSumAmount(+amountSum);
+            setSumAmount(+amountSum.toFixed(2));
         } else {
-            setSumResult(+resultSum);
-            setSumAmount(+amountSum);
-        }
+            setSumResult(+resultSum.toFixed(2));
+            setSumAmount(+amountSum.toFixed(2));
+        };
     }
 
     const getMaxValueObject = () => {
@@ -42,45 +42,43 @@ export const TransactionsList = () => {
     }, [calculateSum, getMaxValueObject])
 
     return (
-        <List>
-            <Item>
-                <Heading>Name</Heading>
-                <Heading>Amount (€)</Heading>
-                <Heading>Result (PLN)</Heading>
-                <Heading>Delete</Heading>
-            </Item>
-            {transactions.map(transaction => (
-                <>
-                    <Item key={transaction.transactionId}>
-                        <Content>{transaction.name}</Content>
-                        <Content>{transaction.amount}</Content>
-                        <Content>{transaction.result}</Content>
-                        <Button onClick={() => {
-                            dispatch(removeTransaction(transaction.transactionId))
-                            calculateSum()
-                        }}>DEL</Button>
-                    </Item>
-                </>
-            ))}
-            <Item>
-                <Heading>SUM:</Heading>
-                <Heading>{sumAmount}</Heading>
-                <Heading>{sumResult}</Heading>
-                <Heading></Heading>
-            </Item>
-            <Item>
-                <Heading>BIGGEST TRANSACTION:</Heading>
-                <Heading></Heading>
-                <Heading></Heading>
-                <Heading></Heading>
-            </Item>
-            <Item>
-                <Content>{maxValue.name}</Content>
-                <Content>{maxValue.amount}</Content>
-                <Content>{maxValue.result}</Content>
-                <Content></Content>
-            </Item>
-        </List>
-
+        <>
+            {maxValue != "" ?
+                <Content>
+                    <Wrapper>
+                        <Heading>Name</Heading>
+                        <Heading>Amount (€)</Heading>
+                        <Heading>Result (PLN)</Heading>
+                        <Heading>Delete</Heading>
+                    </Wrapper>
+                    <List>
+                        {transactions.map(transaction => (
+                            <>
+                                <Item key={transaction.transactionId}>
+                                    <Content>{transaction.name}</Content>
+                                    <Content>{transaction.amount}</Content>
+                                    <Content>{transaction.result}</Content>
+                                    <Button onClick={() => {
+                                        dispatch(removeTransaction(transaction.transactionId))
+                                        calculateSum()
+                                    }}>Delete</Button>
+                                </Item>
+                            </>
+                        ))}
+                    </List>
+                    <Wrapper>
+                        <Heading>SUM:</Heading>
+                        <Heading>{sumAmount}</Heading>
+                        <Heading>{sumResult}</Heading>
+                    </Wrapper>
+                    <Heading>BIGGEST TRANSACTION:</Heading>
+                    <Wrapper>
+                        <Content>{maxValue.name}</Content>
+                        <Content>{maxValue.amount}</Content>
+                        <Content>{maxValue.result}</Content>
+                    </Wrapper>
+                </Content> : <Content></Content>
+            }
+        </>
     )
 };

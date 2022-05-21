@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Result } from "./Result";
 import { Button, Content, StyledForm, StyledInput, Title } from "./styled";
-import { addTransaction, selectTransactions, updateTransaction } from "./transactionSlice";
+import { addTransaction, updateTransaction } from "./transactionSlice";
 
 export const Form = () => {
   const [rate, setRate] = useState(4);

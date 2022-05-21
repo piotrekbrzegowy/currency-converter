@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
+    margin: 0 0 10px 0;
+`;
+
 export const List = styled.ul`
     list-style: none;
     margin: 0;
@@ -8,7 +15,7 @@ export const List = styled.ul`
 `;
 
 export const Heading = styled.p`
-
+    font-weight: 900;
 `
 export const Content = styled.span``;
 
@@ -23,4 +30,15 @@ export const Item = styled.li`
 
 export const Button = styled.button`
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #d11a2a;
+    color: white;
+    font-weight: 700;
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #d11a2b;
+        transform: scale(0.95);
+    }
 `;

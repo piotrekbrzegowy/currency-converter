@@ -5,6 +5,7 @@ const colorNames = {
     crimsonDarker: "#C61525",
     silver: "#cccccc",
     alto: "#dddddd",
+    mercury: "#E5E5E5",
     black: "#000000",
     white: "#ffffff",
 }
@@ -12,6 +13,10 @@ const colorNames = {
 export const theme = {
     breakpoints: {
         mobileMax: 767
+    },
+    background: {
+        primary: colorNames.white,
+        secondary: colorNames.mercury
     },
     text: {
         primary: colorNames.black,

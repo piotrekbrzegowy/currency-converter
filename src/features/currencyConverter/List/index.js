@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTransaction, selectTransactions } from "../Form/transactionSlice";
 import { Item, List, Button, Heading, Content, Wrapper } from "./styled";
@@ -10,7 +10,7 @@ export const TransactionsList = () => {
     const [sumAmount, setSumAmount] = useState("");
     const [maxValue, setMaxValue] = useState("");
 
-    const calculateSum = () => {
+    const calculateSum = useCallback(() => {
         let resultSum = 0;
         let amountSum = 0;
 
@@ -18,6 +18,7 @@ export const TransactionsList = () => {
             resultSum += element.result;
             amountSum += element.amount;
         });
+
         if (transactions.rate === "NaN" || transactions.rate === "") {
             setSumResult(0);
             setSumAmount(+amountSum.toFixed(2));
@@ -25,16 +26,16 @@ export const TransactionsList = () => {
             setSumResult(+resultSum.toFixed(2));
             setSumAmount(+amountSum.toFixed(2));
         };
-    }
+    }, [transactions])
 
-    const getMaxValueObject = () => {
+    const getMaxValueObject = useCallback(() => {
         if (sumResult !== 0 || sumResult !== "") {
             const maxValueObject = transactions.reduce((prev, current) => (prev.result > current.result) ? prev : current, 0)
             setMaxValue(maxValueObject);
         } else {
             setMaxValue("");
         };
-    }
+    }, [transactions, sumResult])
 
     useEffect(() => {
         calculateSum();
@@ -43,7 +44,7 @@ export const TransactionsList = () => {
 
     return (
         <>
-            {maxValue != "" ?
+            {maxValue !== "" ?
                 <Content>
                     <Wrapper>
                         <Heading>Name</Heading>
@@ -53,15 +54,15 @@ export const TransactionsList = () => {
                     </Wrapper>
                     <List>
                         {transactions.map(transaction => (
-                                <Item key={transaction.transactionId}>
-                                    <Content>{transaction.name}</Content>
-                                    <Content>{transaction.amount}</Content>
-                                    <Content>{transaction.result}</Content>
-                                    <Button onClick={() => {
-                                        dispatch(removeTransaction(transaction.transactionId))
-                                        calculateSum()
-                                    }}>Delete</Button>
-                                </Item>
+                            <Item key={transaction.transactionId}>
+                                <Content>{transaction.name}</Content>
+                                <Content>{transaction.amount}</Content>
+                                <Content>{transaction.result}</Content>
+                                <Button onClick={() => {
+                                    dispatch(removeTransaction(transaction.transactionId))
+                                    calculateSum()
+                                }}>Delete</Button>
+                            </Item>
                         ))}
                     </List>
                     <Wrapper>

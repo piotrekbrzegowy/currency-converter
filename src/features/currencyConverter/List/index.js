@@ -28,7 +28,7 @@ export const TransactionsList = () => {
     }
 
     const getMaxValueObject = () => {
-        if (sumResult != 0 || sumResult != "") {
+        if (sumResult !== 0 || sumResult !== "") {
             const maxValueObject = transactions.reduce((prev, current) => (prev.result > current.result) ? prev : current, 0)
             setMaxValue(maxValueObject);
         } else {
@@ -53,7 +53,6 @@ export const TransactionsList = () => {
                     </Wrapper>
                     <List>
                         {transactions.map(transaction => (
-                            <>
                                 <Item key={transaction.transactionId}>
                                     <Content>{transaction.name}</Content>
                                     <Content>{transaction.amount}</Content>
@@ -63,7 +62,6 @@ export const TransactionsList = () => {
                                         calculateSum()
                                     }}>Delete</Button>
                                 </Item>
-                            </>
                         ))}
                     </List>
                     <Wrapper>

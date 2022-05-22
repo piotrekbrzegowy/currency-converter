@@ -4,11 +4,12 @@ import { removeTransaction, selectTransactions } from "../Form/transactionSlice"
 import { Item, List, Button, Heading, Content, Wrapper } from "./styled";
 
 export const TransactionsList = () => {
-    const transactions = useSelector(selectTransactions);
-    const dispatch = useDispatch();
     const [sumResult, setSumResult] = useState("");
     const [sumAmount, setSumAmount] = useState("");
     const [maxValue, setMaxValue] = useState("");
+
+    const transactions = useSelector(selectTransactions);
+    const dispatch = useDispatch();
 
     const calculateSum = useCallback(() => {
         let resultSum = 0;

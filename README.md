@@ -10,7 +10,7 @@ git clone https://github.com/piotrekbrzegowy/currency-converter.git
 
 This is currency converter € to PLN. You can convert currency from € to PLN, add new transaction, delete transaction. Default rate is fetched from https://exchangeratesapi.io/ but you can put your custom rate too. App is refreshing data automatically whenever you change some values. Below the list you can see the sum of values and the biggest transaction from transactions.
 
-<img src="./public/Animation.gif" alt="demo-of-aplication">
+<img src="./public/animation.gif" alt="demo-of-aplication">
 
 ## Used technologies
 

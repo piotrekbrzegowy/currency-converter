@@ -1,9 +1,3 @@
 import { Wrapper } from "./styled";
 
-export const Result = ({ children }) => {
-    return (
-        <Wrapper>
-            {children}
-        </Wrapper>
-    );
-}
+export const Result = ({ children }) => <Wrapper>{children}</Wrapper>

@@ -70,7 +70,6 @@ export const Form = () => {
 
 
   return (
-    <>
       <StateChecker isLoading={isLoading}>
         <Title>Currency converter € to PLN</Title>
         <StyledForm onSubmit={onFormSubmit}>
@@ -107,6 +106,5 @@ export const Form = () => {
         </StyledForm>
         {amount && <Result>{amount} € = {result} PLN</Result>}
       </StateChecker>
-    </>
   )
 }

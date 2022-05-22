@@ -4,7 +4,7 @@ import { fetchRates, fetchRatesError, fetchRatesSuccess } from "./exchangeRatesS
 
 function* fetchRatesHandler() {
     const exchangeRateAPIBaseUrl = "https://api.exchangerate.host/latest?base=";
-    const currency = "EUR"
+    const currency = "EUR";
     const exchangeRatePath = `${exchangeRateAPIBaseUrl}${currency}`;
 
     try {

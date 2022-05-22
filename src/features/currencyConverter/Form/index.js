@@ -2,7 +2,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateChecker } from "../../../common/StateChecker";
-import { fetchRates, selectRatesData, resetState, fetchRatesSuccess, selectLoading } from "./exchangeRatesSlice";
+import { fetchRates, selectRatesData, resetState, selectLoading } from "./exchangeRatesSlice";
 import { Result } from "./Result";
 import { Button, Label, StyledForm, StyledInput, Title } from "./styled";
 import { addTransaction, updateTransaction } from "./transactionSlice";
@@ -54,7 +54,7 @@ export const Form = () => {
   useEffect(() => {
     dispatch(fetchRates());
     return () => resetState();
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (ratesData === undefined) {

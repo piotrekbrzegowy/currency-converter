@@ -42,6 +42,10 @@ export const Button = styled.button`
     width: 100px;
     height: 40px;
 
+    @media(max-width: ${({theme}) => theme.breakpoints.mobileMax}px) {
+        width: 75px;
+    }
+
     &:hover {
         background-color: ${({ theme }) => theme.button.backgroundDeleteHover};
         transform: scale(0.95);

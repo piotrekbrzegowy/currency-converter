@@ -44,7 +44,8 @@ export const TransactionsList = () => {
 
     return (
         <>
-            {maxValue !== "" ?
+            {transactions[0] === undefined ?
+                <Content></Content> :
                 <Content>
                     <Wrapper>
                         <Heading>Name</Heading>
@@ -76,7 +77,7 @@ export const TransactionsList = () => {
                         <Content>{maxValue.amount}</Content>
                         <Content>{maxValue.result}</Content>
                     </Wrapper>
-                </Content> : <Content></Content>
+                </Content>
             }
         </>
     )

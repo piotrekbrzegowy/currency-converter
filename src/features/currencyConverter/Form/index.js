@@ -1,7 +1,8 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRates, selectRatesData, resetState, fetchRatesSuccess } from "./exchangeRatesSlice";
+import { StateChecker } from "../../../common/StateChecker";
+import { fetchRates, selectRatesData, resetState, fetchRatesSuccess, selectLoading } from "./exchangeRatesSlice";
 import { Result } from "./Result";
 import { Button, Label, StyledForm, StyledInput, Title } from "./styled";
 import { addTransaction, updateTransaction } from "./transactionSlice";
@@ -13,6 +14,7 @@ export const Form = () => {
   const [result, setResult] = useState("");
 
   const ratesData = useSelector(selectRatesData);
+  const isLoading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   const calculateResult = (amount, rate) => {
@@ -69,40 +71,42 @@ export const Form = () => {
 
   return (
     <>
-      <Title>Currency converter € to PLN</Title>
-      <StyledForm onSubmit={onFormSubmit}>
-        <StyledInput
-          id="name"
-          value={name}
-          onChange={onNameChange}
-          placeholder="Enter the transaction name"
-          type="text"
-          required
-        />
-        <Label htmlFor="name">Transaction name</Label>
-        <StyledInput
-          id="amount"
-          value={amount}
-          onChange={onAmountChange}
-          placeholder="Enter the amount in €"
-          type="number"
-          required
-          step="0.01"
-          min="0" />
-        <Label htmlFor="amount">Amount in €</Label>
-        <StyledInput
-          id="rate"
-          value={rate}
-          onChange={onRateChange}
-          placeholder="Enter your custom exchange rate"
-          type="number"
-          step="0.01"
-          min="0"
-        />
-        <Label htmlFor="rate">Custom exchange rate</Label>
-        <Button>Add transaction</Button>
-      </StyledForm>
-      {amount && <Result>{amount} € = {result} PLN</Result>}
+      <StateChecker isLoading={isLoading}>
+        <Title>Currency converter € to PLN</Title>
+        <StyledForm onSubmit={onFormSubmit}>
+          <StyledInput
+            id="name"
+            value={name}
+            onChange={onNameChange}
+            placeholder="Enter the transaction name"
+            type="text"
+            required
+          />
+          <Label htmlFor="name">Transaction name</Label>
+          <StyledInput
+            id="amount"
+            value={amount}
+            onChange={onAmountChange}
+            placeholder="Enter the amount in €"
+            type="number"
+            required
+            step="0.01"
+            min="0" />
+          <Label htmlFor="amount">Amount in €</Label>
+          <StyledInput
+            id="rate"
+            value={rate}
+            onChange={onRateChange}
+            placeholder="Enter your custom exchange rate"
+            type="number"
+            step="0.01"
+            min="0"
+          />
+          <Label htmlFor="rate">Custom exchange rate</Label>
+          <Button>Add transaction</Button>
+        </StyledForm>
+        {amount && <Result>{amount} € = {result} PLN</Result>}
+      </StateChecker>
     </>
   )
 }

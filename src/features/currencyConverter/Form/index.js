@@ -1,8 +1,8 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Result } from "./Result";
-import { Button, Content, Label, StyledForm, StyledInput, Title } from "./styled";
+import { Button, Label, StyledForm, StyledInput, Title } from "./styled";
 import { addTransaction, updateTransaction } from "./transactionSlice";
 
 export const Form = () => {

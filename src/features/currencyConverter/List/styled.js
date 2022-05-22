@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
     padding: 10px;
     margin: 0 0 10px 0;
     grid-gap: 10px;
+    word-break: break-word;
 `;
 
 export const Heading = styled.p`

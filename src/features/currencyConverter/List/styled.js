@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+export const Content = styled.span``;
+
 export const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -7,17 +9,16 @@ export const Wrapper = styled.div`
     margin: 0 0 10px 0;
 `;
 
+export const Heading = styled.p`
+    font-weight: 900;
+`
+
 export const List = styled.ul`
     list-style: none;
     margin: 0;
     padding: 0;
     word-break: break-word;
 `;
-
-export const Heading = styled.p`
-    font-weight: 900;
-`
-export const Content = styled.span``;
 
 export const Item = styled.li`
     grid-gap: 10px;

@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Title = styled.h1`
+    color: black;
+    font-weight: 900;
+    font-size: 38px;
+`;
+
 export const StyledForm = styled.form`
     display: grid;
     grid-template-columns: auto 1fr;
@@ -9,26 +15,6 @@ export const StyledForm = styled.form`
     @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
         grid-template-columns: 1fr;
     }
-`;
-
-export const Content = styled.span`
-    max-width: 200px;
-    display: inline-block;
-`;
-
-export const Label = styled.label`
-    margin: 10px 0 0 0;
-    font-size: 20px;
-
-    @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
-        margin: 0px;
-    }
-`;
-
-export const Title = styled.h1`
-    color: black;
-    font-weight: 900;
-    font-size: 38px;
 `;
 
 export const StyledInput = styled.input`
@@ -41,6 +27,15 @@ export const StyledInput = styled.input`
 
     @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
        width: 100%;
+    }
+`;
+
+export const Label = styled.label`
+    margin: 10px 0 0 0;
+    font-size: 20px;
+
+    @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
+        margin: 0px;
     }
 `;
 

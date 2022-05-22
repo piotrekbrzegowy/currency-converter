@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    color: black;
+    color: ${({ theme }) => theme.text.secondary};
     font-weight: 900;
     font-size: 38px;
 `;
@@ -20,7 +20,7 @@ export const StyledForm = styled.form`
 export const StyledInput = styled.input`
     margin: 10px 0 0 0;
     display: block;
-    border: 1px solid #ccc;
+    border: 1px solid ${({ theme }) => theme.input.border};
     padding: 10px;
     width: 450px;
     border-radius: 5px;
@@ -45,14 +45,14 @@ export const Button = styled.button`
     font-size: 20px;
     padding: 12px 16px;
     cursor: pointer;
-    background-color: #0366D6;
-    color: white;
+    background-color: ${({ theme }) => theme.button.background};
+    color: ${({ theme }) => theme.button.text};
     border: none;
     border-radius: 4px;
     transition: 0.5s;
 
     &:hover {
-        background-color: #0366D6;
-        transform: scale(0.95);
+        background-color: ${({ theme }) => theme.button.backgroundHover};
+        transform: scale(0.97);
     }
 `;

@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
     grid-template-columns: repeat(4, 1fr);
     padding: 10px;
     margin: 0 0 10px 0;
+    grid-gap: 10px;
 `;
 
 export const Heading = styled.p`

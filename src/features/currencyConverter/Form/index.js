@@ -70,41 +70,41 @@ export const Form = () => {
 
 
   return (
-      <StateChecker isLoading={isLoading}>
-        <Title>Currency converter € to PLN</Title>
-        <StyledForm onSubmit={onFormSubmit}>
-          <StyledInput
-            id="name"
-            value={name}
-            onChange={onNameChange}
-            placeholder="Enter the transaction name"
-            type="text"
-            required
-          />
-          <Label htmlFor="name">Transaction name</Label>
-          <StyledInput
-            id="amount"
-            value={amount}
-            onChange={onAmountChange}
-            placeholder="Enter the amount in €"
-            type="number"
-            required
-            step="0.01"
-            min="0" />
-          <Label htmlFor="amount">Amount in €</Label>
-          <StyledInput
-            id="rate"
-            value={rate}
-            onChange={onRateChange}
-            placeholder="Enter your custom exchange rate"
-            type="number"
-            step="0.01"
-            min="0"
-          />
-          <Label htmlFor="rate">Custom exchange rate</Label>
-          <Button>Add transaction</Button>
-        </StyledForm>
-        {amount && <Result>{amount} € = {result} PLN</Result>}
-      </StateChecker>
+    <StateChecker isLoading={isLoading}>
+      <Title>Currency converter € to PLN</Title>
+      <StyledForm onSubmit={onFormSubmit}>
+        <StyledInput
+          id="name"
+          value={name}
+          onChange={onNameChange}
+          placeholder="Enter the transaction name"
+          type="text"
+          required
+        />
+        <Label htmlFor="name">Transaction name</Label>
+        <StyledInput
+          id="amount"
+          value={amount}
+          onChange={onAmountChange}
+          placeholder="Enter the amount in €"
+          type="number"
+          required
+          step="0.01"
+          min="0" />
+        <Label htmlFor="amount">Amount in €</Label>
+        <StyledInput
+          id="rate"
+          value={rate}
+          onChange={onRateChange}
+          placeholder="Enter your custom exchange rate"
+          type="number"
+          step="0.01"
+          min="0"
+        />
+        <Label htmlFor="rate">Custom exchange rate</Label>
+        <Button>Add transaction</Button>
+      </StyledForm>
+      {amount && <Result>{amount} € = {result} PLN</Result>}
+    </StateChecker>
   )
 }
